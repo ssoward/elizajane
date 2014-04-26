@@ -1,5 +1,9 @@
-angular.module('myApp').controller('HomeController', function ($scope, ComplementService, GiveService, AdminService, $log){
+angular.module('myApp').controller('HomeController', function ($scope, WordsService, GiveService, AdminService, $log){
     $scope.greeting = 'Hello, world';
+    $scope.allWords = [];
+    $scope.words = [];
+    $scope.index = 0;
+    $scope.left = 0;
 
     $scope.alerts = [
 //        { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
@@ -12,83 +16,49 @@ angular.module('myApp').controller('HomeController', function ($scope, Complemen
 
     $scope.clearMessage = function(){
         $scope.alerts = [];
-    }
+    };
 
     $scope.showMessage = function(typee, msgg){
         $scope.alerts = [];
         $scope.alerts.push({type: typee, msg: msgg});
-    }
+    };
 
-    function init(){
-        getUser();
-        getPraises();
-        getComplements();
-    }
-
-    function getComplements(){
-        ComplementService.getAllComplements()
-                .then(function(res){
-                    $scope.complements = res.data;
-                });
-    }
-
-    function getMembers(){
-        AdminService.getAllUsers().then(function(res){
-            $scope.members = res.data;
-            for(var i = 0; i< $scope.members.length; i++){
-                var mem = $scope.members[i];
-                if(mem.email == $scope.user.email){
-                    $scope.members.splice(i, 1);
-                }
-            }
-        });
-    }
-
-    function getPraises(){
-        GiveService.getAllPraises().then(function(res){
-            $scope.gives = res.data;
-        });
-    }
-
-    function clearPraise(){
-        $scope.newPraise = null;
-        $scope.newPraisee= null;
-        $scope.newComment= null;
-    }
-
-    function getUser(){
-        $scope.user = AdminService.getUser();
-        AdminService.getLoggedInUser().then(function(res){
-            $scope.user = res.data;
-            getMembers();
-        });
-    }
-
-    $scope.deletePraise = function(praise){
-        GiveService.deletePraise(praise).then(function(res){
-            $scope.showMessage('success', 'Successfully deleted praise.');
-            getPraises();
-        });
-    }
-
-    $scope.savePraise = function (){
-        if($scope.newPraise || $scope.newPraisee){
-            $scope.give = {};
-            $scope.give.id = null;
-            $scope.give.user = $scope.user.email;
-            $scope.give.complement =  $scope.newPraise;
-            $scope.give.givenTo = $scope.newPraisee.email;
-            $scope.give.comment = $scope.newComment;
-            $scope.give.givenDt = new Date();
-
-            GiveService.savePraise($scope.give).then(function(res){
-                $scope.showMessage('success', 'Successfully saved praise for '+ $scope.newPraisee.firstName+' '+$scope.newPraisee.lastName+'.');
-                getUser();
-                getPraises();
-                clearPraise();
-            });
+    $scope.nextWord = function(){
+        $scope.index++;
+        if( $scope.index<$scope.words.length) {
+            $scope.currentWord = $scope.words[ $scope.index];
+            $scope.left = $scope.words.length - ($scope.index)-1;
+        }else{
+            $scope.index--;
+            $scope.currentWord = 'FINISHED!';
+            $scope.left = 0 ;
         }
     };
+
+    function init(){
+        getWords();
+    }
+    $scope.fetchList = function(){
+        $scope.words = [];
+        $scope.index = 0;
+        $scope.left = 0;
+        WordsService.getWordsForLevel($scope.word.level)
+            .then(function(res){
+                $scope.newword = null;
+                angular.forEach(res.data, function(value, key){
+                    this.push(value.name);
+                }, $scope.words);
+                $scope.currentWord = $scope.words[ $scope.index];
+                $scope.left = $scope.words.length - ($scope.index)-1;
+            });
+    };
+
+    function getWords(){
+        WordsService.getWordLevels()
+            .then(function(res){
+                $scope.levels = res.data;
+            });
+    }
 
     init();
 

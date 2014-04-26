@@ -1,0 +1,67 @@
+<div>
+    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+</div>
+
+<div>
+    <p>New Words</p>
+
+    <div class="row form-group">
+        <div class="col-md-3">
+            <input ng-keypress="myFunct($event, 'word')" type="text" data-ng-model="newword.name"required name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <select id="select-position" class="selectpicker form-control"
+                    ng-model="newword.level"
+                    required
+                    ng-options="level.value as level.name for level in levels">
+                <option style="display:none" value="">Choose a Level</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <ul class="list-inline col-md-4">
+                <li><a ng-click="save()" class="btn btn-primary">Save</a></li>
+                <li><a ng-click="clear()" class="btn btn-default">Cancel</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<br/>
+<h2>View Words</h2>
+<div class="row">
+    <div class="form-group col-sm-2">
+        <select id="select-position2" class="selectpicker form-control"
+                ng-change="getWordsForLevel()"
+                ng-model="wordsLevel"
+                required
+                ng-options="level.value as level.name for level in levels">
+            <option style="display:none" value="">Choose a Level</option>
+        </select>
+    </div>
+</div>
+<div class="table-responsive" role="menu">
+    <div ng-if="words">
+        <span class="">count: {{words.length}}</span>
+    </div>
+    <div class="my-row row">
+        <div data-ng-show="userAdmin" class="col-sm-1">Cancel</div>
+        <div class="col-sm-1">Delete</div>
+        <div class="col-sm-3"><a href="" ng-click="predicate = '-name'; reverse=false">Name</a>
+            <a href="" ng-click="predicate = 'name'; reverse=false">^</a></div>
+        <div class="col-sm-3"><a href="" ng-click="predicate = '-level'; reverse=false">Level</a>
+            <a href="" ng-click="predicate = 'level'; reverse=false">^</a></div>
+    </div>
+
+    <div class="my-row row" ng-class-odd="'odd'" ng-class-even="'even'"
+         ng-repeat="word in words | orderBy:predicate:true | filter:searchText:strict">
+        <div data-ng-show="userAdmin" class="col-sm-1">Cancel</div>
+        <div class="col-sm-1">
+            <button tooltip="Delete Word" class="btn btn-danger" ng-click="deleteWord(word)" value="delete"/>
+        </div>
+        <div class="col-sm-3">{{word.name}}</div>
+        <div class="col-sm-3">{{word.level}}</div>
+    </div>
+</div>

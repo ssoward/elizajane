@@ -67,7 +67,7 @@ public class Application extends DelegatingWebMvcConfiguration{
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/spring");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/eliza");
         dataSource.setUsername("root");
         dataSource.setPassword("asdfg123");
         return dataSource;

@@ -35,9 +35,6 @@ public class GiveController {
     UserService userService;
 
     @Autowired
-    ComplementsService complementService;
-
-    @Autowired
     FileService fileService;
 
     @RequestMapping(method = RequestMethod.PUT, value="/gives/distributed", produces = MediaType.APPLICATION_JSON_VALUE)

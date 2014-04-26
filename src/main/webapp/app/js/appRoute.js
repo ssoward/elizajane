@@ -1,9 +1,9 @@
 angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/ElizaWords');
 
     $stateProvider
-            .state('home', {
-                url: '/home',
+            .state('ElizaWords', {
+                url: '/ElizaWords',
                 templateUrl: 'partials/home.html',
                 controller: 'HomeController'
             })
@@ -20,20 +20,15 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
                 abstract: true,
                 templateUrl: 'partials/admin/admin.html'
             })
-//            .state('admin.home', {
-//                url: '/home',
-//                templateUrl: 'partials/admin.html',
-//                controller: 'AdminController'
-//            })
             .state('admin.users', {
                 url: '/users',
                 templateUrl: 'partials/admin/employeeAdmin.html',
                 controller: 'AdminUsersController'
             })
-            .state('admin.complements', {
-                url: '/complements',
-                templateUrl: 'partials/admin/complementAdmin.html',
-                controller: 'AdminComplementsController'
+            .state('admin.words', {
+                url: '/words',
+                templateUrl: 'partials/admin/wordsAdmin.html',
+                controller: 'AdminWordsController'
             })
             .state('admin.give', {
                 url: '/give',

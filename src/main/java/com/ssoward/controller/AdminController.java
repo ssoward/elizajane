@@ -52,9 +52,6 @@ public class AdminController {
     UserService userService;
 
     @Autowired
-    ComplementsService complementService;
-
-    @Autowired
     FileService fileService;
 
     @Autowired

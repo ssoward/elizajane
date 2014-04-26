@@ -302,3 +302,8 @@ textarea {
         page-break-after: avoid;
     }
 }
+
+*::-moz-selection {
+    background: none repeat scroll 0 0 #B3D4FC;
+
+}

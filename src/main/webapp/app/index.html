@@ -18,8 +18,8 @@
 <body>
 <div  ng-controller="InitController">
     <span>
-        <span class="title">EIP</span>
-        <small>Employee Incentive Program</small>
+        <span class="title">PEJ</span>
+        <span class="title-label">Princess Eliza Jane</span>
     </span>
     <div class="navbar-right">
         <div> <a href="/logout" tooltip="Later Brutha">logout</a></div>
@@ -29,8 +29,8 @@
     </div>
 
     <ul class="menu">
-        <li><a href="#/home">home</a></li>
-        <li><a href="#/store">Store</a></li>
+        <li><a href="#/ElizaWords">Eliza's Words</a></li>
+        <!--<li><a href="#/store">Store</a></li>-->
         <li data-ng-show="userAdmin"><a href="#/admin/users">admin</a></li>
     </ul>
 </div>
@@ -49,14 +49,14 @@
 <script src="js/appRoute.js"></script>
 <script src="js/services/GiveService.js"></script>
 <script src="js/services/AdminService.js"></script>
-<script src="js/services/ComplementService.js"></script>
+<script src="js/services/WordsService.js"></script>
 <script src="js/services/BuckService.js"></script>
 <script src="js/services/AwardService.js"></script>
 <script src="js/controllers/StoreController.js"></script>
 <script src="js/controllers/HomeController.js"></script>
 <script src="js/controllers/admin/AdminController.js"></script>
 <script src="js/controllers/admin/AdminUsersController.js"></script>
-<script src="js/controllers/admin/AdminComplementsController.js"></script>
+<script src="js/controllers/admin/AdminWordsController.js"></script>
 <script src="js/controllers/admin/AdminStoreController.js"></script>
 <script src="js/controllers/admin/AdminAwardsLogController.js"></script>
 <script src="js/controllers/InitController.js"></script>

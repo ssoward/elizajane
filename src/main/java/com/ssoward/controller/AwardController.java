@@ -41,9 +41,6 @@ public class AwardController {
     UserService userService;
 
     @Autowired
-    ComplementsService complementService;
-
-    @Autowired
     FileService fileService;
 
     @RequestMapping(method = RequestMethod.GET, value="/awards", produces = MediaType.APPLICATION_JSON_VALUE)
