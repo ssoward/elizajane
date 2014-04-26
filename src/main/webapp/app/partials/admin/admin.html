@@ -1,0 +1,30 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+
+    <title>Admin</title>
+
+</head>
+
+<div>
+    <div class="app-info">
+        <h3>Admin Tools</h3>
+    </div>
+    <div class="wrapper">
+        <div>
+            <body>
+            <ul class="nav nav-tabs" id="myTab" data-ng-controller="AdminController">
+                <li ng-class="{active:isActive('admin.users')}">         <a ng-click="getLink('/admin/users')">Users</a></li>
+                <li ng-show="userAdmin" ng-class="{active:isActive('admin.complements')}"> <a ng-click="getLink('/admin/complements')">Complements</a></li>
+                <li ng-show="userAdmin" ng-class="{active:isActive('admin.store')}">       <a ng-click="getLink('/admin/store')">Store</a></li>
+                <li ng-show="userAdmin" ng-class="{active:isActive('admin.give')}">        <a ng-click="getLink('/admin/give')">Awards Purchased</a></li>
+                <!--<li ng-class="{active:isActive('admin.give')}">   <a ng-click="getLink('/admin/give')">Settings</a></li>-->
+            </ul>
+            <br/>
+            <div>
+                <div ui-view></div>
+            </div>
+            </body>
+        </div>
+    </div>
+</div>

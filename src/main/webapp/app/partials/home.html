@@ -1,0 +1,120 @@
+<div>
+    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+</div>
+<div>
+    <span class="panel-title h1">Points</span>
+    <ul class="nav">
+        <li>Total YV Bucks Received {{ user.unspentBucks }}</li>
+        <li>Total Complements to Give {{ user.remainingGives }}</li>
+    </ul>
+</div>
+<br>
+<div class="table">
+    <div data-ng-show="user.remainingGives>0">
+        <div class="row">
+            <div class="form-group col-md-2">
+                <label for="peer">Please Select a Peer:</label>
+                <select ng-model="newPraisee"
+                        name="reason" id="peer" class="form-control"
+                        ng-options="mem as mem.firstName + ' ' + mem.lastName for mem in members | orderBy:'firstName'">
+                    <option style="display:none" value="">Select a Peer</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="releaseComplement">Please Select a Complement:</label>
+                <select ng-model="newPraise" name="reason" id="releaseComplement" class="form-control"
+                        ng-options="comp.id as comp.name for comp in complements | orderBy:'name'">
+                    <option style="display:none" value="">Complement...</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-10">
+                <textarea maxlength="150" ng-model="newComment" name="message" id="comments" placeholder="Additional Comments"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <ul class="list-inline col-md-4">
+                    <li><a ng-click="clearPraise()" class="btn btn-default">Cancel</a></li>
+                    <li><a ng-click="savePraise()" class="btn btn-primary">Save</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div data-ng-hide="user.remainingGives>0">
+        <div class="panel-title h2">You have no remaining points to give.</div>
+    </div>
+    <div class="form-group">
+        <span class="panel-title h2">History</span>
+        <div>&nbsp;</div>
+        <div class="table-responsive show" role="menu">
+            <div class="my-row row">
+                <div data-ng-show="userAdmin" class="col-sm-1">Delete</div>
+                <div class="col-sm-1"><a href="" ng-click="predicate = 'praiseDt'; reverse=false">Date</a></div>
+                <div class="col-sm-1"><a href="" ng-click="predicate = 'praisee';  reverse=false">Praisee</a></div>
+                <div class="col-sm-2"><a href="" ng-click="predicate = 'praiser';  reverse=false">Praiser</a></div>
+                <div class="col-sm-3"><a href="" ng-click="predicate = 'praise';   reverse=false">Praise</a></div>
+                <div class="col-sm-3"><a href="" ng-click="predicate = 'comment';  reverse=false">Comments</a></div>
+            </div>
+
+            <div class="my-row row" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="give in gives | orderBy:predicate:true">
+                <div >
+                    <div class="col-sm-1" data-ng-show="userAdmin">
+                        <button tooltip="Delete Praise" class="btn btn-danger" ng-click="deletePraise(praise)" value="delete"/>
+                    </div>
+                    <div class="col-sm-1 h6">
+                        {{give.givenDt | date:'MMM dd yyyy'}}
+                    </div>
+                    <div class="col-sm-1 h6">
+                        {{give.givenTo}}
+                    </div>
+                    <div class="col-sm-2 h6">
+                        {{give.user}}
+                    </div>
+                    <div class="col-sm-3 h6">
+                        {{give.complementName}}
+                    </div>
+                    <div class="col-sm-3 h6">
+                        {{give.comment}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--small screen start-->
+        <div class="table-responsive hide" role="menu">
+            <div ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="praise in praises | orderBy:predicate:true">
+                <table data-role="table" data-mode="reflow" class="table-stroke ui-table ui-table-reflow">
+                    <thead>
+                    <tr>
+                        <th colspan="3" style="width: 100%" class="my-th"> {{praise.praisee}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="h6">Date</td>
+                        <td class="h6">{{praise.praiseDt | date:'MMM dd yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="h6">Praiser</td>
+                        <td class="h6">{{praise.praiser}}</td>
+                    </tr>
+                    <tr>
+                        <td class="h6">Praise</td>
+                        <td class="h6">{{praise.praise}}</td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 3px solid #aaa;" class="h6">Comment</td>
+                        <td style="width: 100%; border-bottom: 3px solid #aaa;" class="h6">{{praise.comment}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--small screen end-->
+</div>
+

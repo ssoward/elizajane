@@ -1,0 +1,102 @@
+<div>
+    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+</div>
+
+<h5><a ng-click="toggleNewUser()">Add/Edit User</a></h5>
+<div ng-show="newUsersShow" class="container my-show-hide-animation">
+    <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Add/Edit User<small></small></h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" data-ng-model="praiser.firstName" required name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" data-ng-model="praiser.lastName"required name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" ng-disabled="editUser" autocomplete="off" data-ng-model="praiser.email" required name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+                        </div>
+                        <div class="row" data-ng-show="userAdmin">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <select id="select-position" class="selectpicker form-control"
+                                            ng-model="praiser.auth"
+                                            ng-options="role.value as role.name for role in roles">
+                                        <option style="display:none" value="">Choose a Role</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <select id="inital-count" class="selectpicker form-control"
+                                            ng-model="praiser.remainingGives">
+                                        <option ng-repeat="num in [1,2,3,4,5,6,7,8,9,10]" value="{{num}}">{{num}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" data-ng-model="praiser.password" autocomplete="off" required name="password" id="password" class="form-control input-sm" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" data-ng-model="passwordConfirm"required name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn-link" tooltip="Clear Fields" data-ng-show="userAdmin" ng-click="toggleClear()" data-toggle="modal">reset</a>
+                        <input type="submit" value="Save" data-ng-click="saveNewUser()" class="btn btn-info btn-block">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-ng-show="userAdmin">
+    <div class="form-group">
+        <span class="panel-title h2">Users</span>
+        <div>&nbsp;</div>
+        <div class="table-responsive" role="menu">
+            <div class="my-row row">
+                <div class="col-sm-1">Delete</div>
+                <div class="col-sm-2">User</div>
+                <div class="col-sm-2">Role</div>
+                <div class="col-sm-2">Email</div>
+            </div>
+
+            <div class="my-row row" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="user in users | orderBy:predicate:true">
+                <div >
+                    <div class="col-sm-1" data-ng-show="userAdmin">
+                        <button tooltip="Delete Employee" class="btn btn-danger" ng-click="deleteUser(user)" value="delete"/>
+                    </div>
+                    <div class="col-sm-2 h6">
+                        <a class="btn-link" tooltip="Edit Employee" ng-click="setUser(user)" data-toggle="modal">{{ user.firstName }} {{ user.lastName }}</a>
+                    </div>
+                    <div class="col-sm-2 h6">
+                        {{ user.auth =='ROLE_ADMIN' ? 'Admin':'Staff' }}
+                    </div>
+                    <div class="col-sm-2 h6">
+                        {{ user.email }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
