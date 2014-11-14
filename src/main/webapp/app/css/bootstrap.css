@@ -4931,24 +4931,13 @@ a.list-group-item.active > .badge,
     text-align: center;
     margin: 200px auto;
     font-family: cursive;
-    font-size: 100px;
+    font-size: 20px;
     text-transform: uppercase;
     color: #FA58F4;
     font: normal;
     text-shadow: 5px 5px 0 #FBEFFB, 7px 7px 0 #D358F7;
 }
 
-.elizas-words{
-    font-family: Comic Sans MS;
-    font-size: 75px;
-    color: #FA58F4;
-    font: normal;
-    text-transform: uppercase;
-    border: solid;
-    border-radius: 15px;
-    padding: 0px;
-    width: 100%;
-}
 .title-label{
     font-family: cursive;
     font-size: 20px;
@@ -4965,6 +4954,23 @@ a.list-group-item.active > .badge,
 
 .container .jumbotron {
   border-radius: 6px;
+}
+
+
+.elizas-words{
+    font-family: Comic Sans MS;
+    font-size: 6.9vw;
+    color: #FA58F4;
+    font: normal;
+    text-transform: uppercase;
+    border: solid;
+    border-radius: 15px;
+    padding: 10px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 320px) {
+    body { font-size: 2em; }
 }
 
 @media screen and (min-width: 768px) {

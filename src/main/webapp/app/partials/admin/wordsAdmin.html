@@ -7,7 +7,7 @@
 
     <div class="row form-group">
         <div class="col-md-3">
-            <input ng-keypress="myFunct($event, 'word')" type="text" data-ng-model="newword.name"required name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+            <input ng-keypress="myFunct($event, 'word')" type="text" data-ng-model="newword.name"required name="last_name" id="last_name" class="form-control input-sm" placeholder="New Word">
         </div>
     </div>
     <div class="row">
@@ -15,7 +15,7 @@
             <select id="select-position" class="selectpicker form-control"
                     ng-model="newword.level"
                     required
-                    ng-options="level.value as level.name for level in levels">
+                    ng-options="level.name as level.name for level in levels">
                 <option style="display:none" value="">Choose a Level</option>
             </select>
         </div>
@@ -37,7 +37,7 @@
                 ng-change="getWordsForLevel()"
                 ng-model="wordsLevel"
                 required
-                ng-options="level.value as level.name for level in levels">
+                ng-options="level.name as level.name for level in levels">
             <option style="display:none" value="">Choose a Level</option>
         </select>
     </div>

@@ -43,7 +43,7 @@ public class WordsServiceImpl implements WordsService {
 
     @Override
     public List<Word> getWordsForLevel(String level) {
-        WordLevelEnum e = WordLevelEnum.getForString(level);
+        WordLevelEnum e = WordLevelEnum.getForStringName(level);
         List<Word> l = jdbcTemplate.query("select * from words where level = ?", wordsRowMapper, e.id);
         return l;
     }

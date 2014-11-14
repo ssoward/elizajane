@@ -1,7 +1,10 @@
 package com.ssoward.config;
 
 import com.ssoward.service.TestUtil;
-import org.springframework.beans.factory.annotation.Value;
+import net.sf.ehcache.Cache;
+import net.sf.ehcache.config.CacheConfiguration;
+import net.sf.ehcache.config.PersistenceConfiguration;
+import net.sf.ehcache.store.MemoryStoreEvictionPolicy;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -14,15 +17,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import net.sf.ehcache.Cache;
-import net.sf.ehcache.config.CacheConfiguration;
-import net.sf.ehcache.config.PersistenceConfiguration;
-import net.sf.ehcache.store.MemoryStoreEvictionPolicy;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 @Configuration
@@ -35,11 +34,6 @@ public class Application extends DelegatingWebMvcConfiguration{
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-
-//    @Bean
-//    public void test(@Value("${db.username}") String username){
-//
-//    }
 
     @Bean
     public CacheManager cacheManager() {

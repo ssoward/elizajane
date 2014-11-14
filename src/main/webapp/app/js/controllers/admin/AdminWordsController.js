@@ -32,17 +32,13 @@ angular.module('myApp').controller('AdminWordsController', function ($scope, Wor
             .then(function(res){
                 $scope.wordsLevel = $scope.newword.level;
                 $scope.getWordsForLevel();
-
-            });
+            })
     };
 
     $scope.deleteWord = function(comp) {
         WordsService.deleteWord(comp)
             .then(function(res){
-                WordsService.getAllWords()
-                    .then(function(res){
-                        $scope.words = res.data;
-                    });
+                $scope.getWordsForLevel();
             });
     };
 
