@@ -2,7 +2,7 @@
     <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 </div>
 
-<div>
+<div class="user" ng-if="user.email !== 'guest@guest.com'">
     <p>New Words</p>
 
     <div class="row form-group">

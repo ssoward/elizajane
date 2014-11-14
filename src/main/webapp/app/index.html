@@ -22,7 +22,7 @@
     </span>
     <div class="navbar-right">
         <div> <a href="/logout" tooltip="Later Brutha">logout</a></div>
-        <div class="user">
+        <div class="user" ng-if="user.email !== 'guest@guest.com'">
             <a tooltip="Edit Account" href="#/admin/users">{{ user.email }}</a>
         </div>
     </div>
