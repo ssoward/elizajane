@@ -10,7 +10,6 @@ angular.module('myApp').controller('AdminUsersController', function ($scope, Adm
                 if($scope.user.firstName === 'guestFirstName'){
                     $state.go('ElizaWords');
                 }
-                $log.info($scope.user);
                 $scope.updateUsers();
             });
 
