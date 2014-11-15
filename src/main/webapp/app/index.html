@@ -21,8 +21,8 @@
         <span class="title-label">Princess Eliza Jane</span>
     </span>
     <div class="navbar-right">
-        <div> <a href="/logout" tooltip="Later Brutha">logout</a></div>
-        <div class="user" ng-if="user.email !== 'guest@guest.com'">
+        <div> <a href="/ejs/logout" tooltip="Later Brutha">logout</a></div>
+        <div class="user" ng-if="user.firstName !== 'guestFirstName'">
             <a tooltip="Edit Account" href="#/admin/users">{{ user.email }}</a>
         </div>
     </div>

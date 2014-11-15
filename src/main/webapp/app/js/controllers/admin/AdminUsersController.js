@@ -1,21 +1,22 @@
-angular.module('myApp').controller('AdminUsersController', function ($scope, AdminService, $log, $rootScope){
+angular.module('myApp').controller('AdminUsersController', function ($scope, AdminService, $log, $rootScope, $state){
     $scope.greeting = 'Hello, world';
     $scope.newUsersShow = false;
 
     function init(){
         $scope.roles = getRoles();
-        $scope.user = AdminService.getUser();
-        if($scope.user){
-            $scope.updateUsers();
-        }else{
-            AdminService.getLoggedInUser().then(function(res){
+        AdminService.getLoggedInUser()
+            .then(function (res){
                 $scope.user = res.data;
+                if($scope.user.firstName === 'guestFirstName'){
+                    $state.go('ElizaWords');
+                }
+                $log.info($scope.user);
                 $scope.updateUsers();
             });
-        }
-//        $scope.$on('divButton:clicked', function(event, message){
-//            alert(message);
-//        });
+
+        $scope.$on('divButton:clicked', function(event, message){
+            alert(message);
+        });
 
         $scope.numbers = getNumbers();
     }

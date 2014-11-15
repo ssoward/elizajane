@@ -1,17 +1,17 @@
 angular.module('myApp').service('AwardService', function ($http, $log) {
-
+    var prefix = '/ejs';
     this.updateAward = function(award){
         return $http({
             method: 'PUT',
             data: award,
-            url: '/api/awards'
+            url: prefix+'/api/awards'
         });
     }
 
     this.getAllComplements = function (){
         return $http({
             method: 'GET',
-            url: '/api/complements'
+            url: prefix+'/api/complements'
         });
     };
 
@@ -21,21 +21,21 @@ angular.module('myApp').service('AwardService', function ($http, $log) {
             params: {
                 id: award.id
             },
-            url: '/api/awards'
+            url: prefix+'/api/awards'
         });
     };
 
     this.fetchAwards = function(){
         return $http({
             method: 'GET',
-            url: '/api/awards'
+            url: prefix+'/api/awards'
         });
     };
 
     this.uploadFiles = function(fd){
         return $http({
             method: 'POST',
-            url: '/api/content-files/upload',
+            url: prefix+'/api/content-files/upload',
             data: fd,
             withCredentials: true,
             headers: {'Content-Type': undefined },

@@ -1,17 +1,17 @@
 angular.module('myApp').service('BuckService', function ($http, $log) {
-
+    var prefix = '/ejs';
     this.decrementBucks = function(award){
         return $http({
             method: 'PUT',
             data: award,
-            url: '/api/buck/buy'
+            url: prefix+'/api/buck/buy'
         });
     }
 
     this.getAllComplements = function (){
         return $http({
             method: 'GET',
-            url: '/api/complements'
+            url: prefix+'/api/complements'
         });
     };
 
@@ -21,7 +21,7 @@ angular.module('myApp').service('BuckService', function ($http, $log) {
             params: {
                 id: praise.id
             },
-            url: '/api/complements'
+            url: prefix+'/api/complements'
         });
     }
 

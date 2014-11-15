@@ -10,7 +10,7 @@ angular.module('myApp').controller('AdminController', function ($scope, AdminSer
     }
 
     //Need to init after all functions have been loaded into the scope.
-    init();
+   init();
 
     $scope.isActive = function(page){
         return $state.current.name == page;

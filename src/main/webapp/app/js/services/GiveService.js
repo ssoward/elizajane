@@ -1,17 +1,17 @@
 angular.module('myApp').service('GiveService', function ($http, $log) {
-
+    var prefix = '/ejs';
     this.savePraise = function(praise){
         return $http({
             method: 'POST',
             data: praise,
-            url: '/api/praise'
+            url: prefix+'/api/praise'
         });
     }
 
     this.getAllPraises = function (){
         return $http({
             method: 'GET',
-            url: '/api/give/praises'
+            url: prefix+'/api/give/praises'
         });
     };
 
@@ -21,7 +21,7 @@ angular.module('myApp').service('GiveService', function ($http, $log) {
             params: {
                 id: praise.id
             },
-            url: '/api/praise'
+            url: prefix+'/api/praise'
         });
     }
 
@@ -29,14 +29,14 @@ angular.module('myApp').service('GiveService', function ($http, $log) {
         return $http({
             method: 'PUT',
             data: give,
-            url: '/api/gives/distributed'
+            url: prefix+'/api/gives/distributed'
         });
     }
 
     this.fetchPurchasedLogs = function (){
         return $http({
             method: 'GET',
-            url: '/api/gives/logs'
+            url: prefix+'/api/gives/logs'
         });
     };
 

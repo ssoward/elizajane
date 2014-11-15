@@ -1,10 +1,11 @@
 angular.module('myApp').service('AdminService', function ($http, $log) {
     var user = null;
+    var prefix = '/ejs';
 
     this.getLoggedInUser = function (){
         return $http({
             method: 'GET',
-            url: '/api/loggedIn'
+            url: prefix+'/api/loggedIn'
         }).then(function(res){
             user = res.data;
             return res;
@@ -14,7 +15,7 @@ angular.module('myApp').service('AdminService', function ($http, $log) {
     this.getAllUsers = function (){
         return $http({
             method: 'GET',
-            url: '/api/employees'
+            url: prefix+'/api/employees'
         });
     };
 
@@ -30,7 +31,7 @@ angular.module('myApp').service('AdminService', function ($http, $log) {
         return $http({
             method: 'POST',
             data: praiser,
-            url: '/api/employee'
+            url: prefix+'/api/employee'
         });
     }
 
@@ -38,7 +39,7 @@ angular.module('myApp').service('AdminService', function ($http, $log) {
         return $http({
             method: 'PUT',
             data: praiser,
-            url: '/api/employee/count'
+            url: prefix+'/api/employee/count'
         });
     }
 
@@ -48,7 +49,7 @@ angular.module('myApp').service('AdminService', function ($http, $log) {
             params: {
                 username: praiser.email
             },
-            url: '/api/employee'
+            url: prefix+'/api/employee'
         });
     }
 

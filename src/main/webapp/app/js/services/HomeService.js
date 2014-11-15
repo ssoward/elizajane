@@ -1,17 +1,18 @@
 angular.module('myApp').service('HomeService', function ($http, $log) {
     var user = {};
+    var prefix = '/ejs';
 
     this.getLoggedInUser = function (){
         return $http({
             method: 'GET',
-            url: '/api/loggedIn'
+            url: prefix+'/api/loggedIn'
         });
     };
 
     this.getAllUsers = function (){
         return $http({
             method: 'GET',
-            url: '/users'
+            url: prefix+'/users'
         });
     };
 
